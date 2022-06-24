@@ -1,0 +1,14 @@
+{
+  "name": "@qingqi/utils",
+  "version": "1.0.0",
+  "description": "工具、纯函数",
+  "main": "dist/index.js",
+  "scripts": {},
+  "author": "yunfei",
+  "license": "ISC",
+  "dependencies": {},
+  "qingqi": {
+    "type": "lib",
+    "devLinks": []
+  }
+}

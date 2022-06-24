@@ -1,0 +1,9 @@
+{
+  "name": "qingqi-core",
+  "version": "1.0.0",
+  "description": "工程初始化工具；用于初始化服务",
+  "main": "index.js",
+  "scripts": {},
+  "author": "yunfei",
+  "license": "ISC"
+}
