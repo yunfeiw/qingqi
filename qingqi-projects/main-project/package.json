@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "qiankun": "^2.7.3",
     "vue": "^3.2.25"
   },
   "devDependencies": {
