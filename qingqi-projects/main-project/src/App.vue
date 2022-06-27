@@ -12,7 +12,9 @@
     <!-- head -->
     <div class=""></div>
     <!-- content -->
-    <div></div>
+    <div>
+      <div id="container"></div>
+    </div>
   </div>
 </div>
 </template>

@@ -6,16 +6,16 @@ import { registerMicroApps, start } from 'qiankun';
 
 registerMicroApps([
     {
-        name: 'reactApp',
-        entry: '//localhost:3000',
+        name: 'vue1',
+        entry: '//localhost:9000',
         container: '#container',
-        activeRule: '/app-react',
+        activeRule: '/vue1',
     },
     {
-        name: 'vueApp',
-        entry: '//localhost:8080',
+        name: 'react1',
+        entry: '//localhost:9001',
         container: '#container',
-        activeRule: '/app-vue',
+        activeRule: '/react1',
     },
 ]);
 // 启动 qiankun
