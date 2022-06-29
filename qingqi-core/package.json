@@ -5,5 +5,10 @@
   "main": "index.js",
   "scripts": {},
   "author": "yunfei",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "figlet": "^1.5.2",
+    "node-cmd": "^5.0.0"
+  },
+  "dependencies": {}
 }
