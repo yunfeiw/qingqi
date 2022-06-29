@@ -3,12 +3,20 @@
   "version": "1.0.0",
   "description": "工程初始化工具；用于初始化服务",
   "main": "index.js",
-  "scripts": {},
+  "bin": {
+    "qingqi": "dist/index.js"
+  },
+  "scripts": {
+    "test": "ts-node ./src/index"
+  },
   "author": "yunfei",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/yargs-parser": "^21.0.0",
     "figlet": "^1.5.2",
-    "node-cmd": "^5.0.0"
+    "node-cmd": "^5.0.0",
+    "yargs-parser": "^21.0.1"
   },
   "dependencies": {}
 }
