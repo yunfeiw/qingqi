@@ -1,0 +1,11 @@
+简述如何去做！
+使用：qingqi  <command>  [options]
+
+Commands：
+    qingqi  init  [ProjectName]  初始化项目  默认初始化，当前执行环境下所有项目
+    qingqi  dev   [ProjectName]  开启服务    默认会启动，当前运行环境下所有项目
+    qingqi  build [ProjectName]  打包        默认打包，当前运行环境下所有项目   
+
+Options：
+  --help      
+  --version  

@@ -1,15 +1,16 @@
 /*
  * @Descripttion: 
  * @Author: yunfei
- * @Date: 2022-06-29 15:46:03
+ * @Date: 2022-06-30 19:51:58
  */
+
 import Command from "../interface/Command";
 import BasePro from '../class/BasePro';
 
-export default class Init extends BasePro implements Command {
-    name: string = 'init'
+export default class Serve extends BasePro implements Command {
+    name: string = 'serve'
     constructor() {
-        super('npm install')
+        super('npm run serve')
     }
     async run(argv: any) {
         // 参数解析
@@ -20,11 +21,9 @@ export default class Init extends BasePro implements Command {
                     process.exit(-1)
                 }, 1000)
             })
-
             return
         }
         this.collectProject();
-
     }
 
 
