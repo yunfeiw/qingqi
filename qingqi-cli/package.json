@@ -1,0 +1,19 @@
+{
+  "name": "qingqi-cli",
+  "version": "1.0.0",
+  "description": "支持微服务",
+  "main": "index.js",
+  "scripts": {
+    "build-ts": "ts-node ./src/index.ts build-ts",
+    "install-link": "ts-node ./src/index.ts install-link"
+  },
+  "author": "yunfei",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "chalk": "^5.0.1",
+    "util": "^0.12.4",
+    "yargs-parser": "^21.0.1"
+  },
+  "dependencies": {}
+}

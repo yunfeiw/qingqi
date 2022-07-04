@@ -5,7 +5,7 @@
  */
 import { exec, ExecOptions } from 'child_process';
 import chalk from 'chalk';
-import { resolve } from 'path';
+
 export function runCwd(command: string, options?: ExecOptions, silent = false): Promise<void> {
     console.log(chalk.yellow(`cwd(${options.cwd})`));
     console.log(chalk.blueBright(`run command> ${command}`));

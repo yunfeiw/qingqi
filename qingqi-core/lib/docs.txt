@@ -2,12 +2,28 @@
 使用：qingqi  <command>  [options]
 
 Commands：
-    qingqi  init  [ProjectName]  初始化项目  默认初始化，当前执行环境下所有项目
-    qingqi  seve  [ProjectName]  开启服务    默认会启动，当前运行环境下所有项目
-    qingqi  build [ProjectName]  打包        默认打包，当前运行环境下所有项目   
-    qingqi  link                 初始化本地项目依赖
 
-    qingqi  creator              创建项目
+  *  qingqi  init  [ProjectName]  初始化项目  默认初始化，当前执行环境下所有项目
+
+  *  qingqi  seve  [ProjectName]  开启服务    默认会启动，当前运行环境下所有项目
+    
+  *  qingqi  build [ProjectName]  打包        默认打包，当前运行环境下所有项目   
+    
+  *  qingqi  link                 初始化本地项目依赖
+
+  *  qingqi  creator              创建项目
+                                 qingqi creator
+                                      - vue 服务    vue-cli
+                                      - vue 微服务  vue-qiankun
+    
+  *  qingqi page                  创建页面
+                                      - vue
+                                      - jsx
+                                      - html
+                                      - jsp
+
 Options：
+
   --help      
+
   --version  

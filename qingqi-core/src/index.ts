@@ -5,6 +5,8 @@
  * @Date: 2022-06-24 20:19:00
  */
 import chalk from 'chalk';
+import { resolve } from 'path';
+import { readFileSync } from 'fs'
 import yargsParser from 'yargs-parser';
 
 import Command from './interface/Command';
@@ -17,6 +19,12 @@ import matchCm from './func/matchCm';
 const args = yargsParser(process.argv);
 const cmd: string | number = args._[2];
 
+// 版本
+if (args.version || args.v) {
+    console.log(`v${JSON.parse(readFileSync(resolve(__dirname, '../package.json'), 'utf-8'))['version']}`)
+    process.exit(-1);
+}
+
 if (!cmd) {
     console.error(chalk.red('Command is needed!'));
     help();
@@ -25,6 +33,7 @@ if (!cmd) {
 
 // 设计语法
 async function run() {
+
     let Cmd = ucFirst(cmd)
     if (matchCm(`${__dirname}/commands/`, Cmd)) {
         const cmdClass = require(`./commands/${Cmd}`).default;
