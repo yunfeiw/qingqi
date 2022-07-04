@@ -45,9 +45,9 @@
                 name="declareDate"
                 type="monthrange"
                 placeholder="请选择"
-                :value="formValidate.declareDate"
                 style="width: 100%"
                 format="yyyy-MM"
+                :value="formValidate.declareDate"
                 @on-change="formValidate.declareDate = $event"
               />
             </FormItem>
@@ -111,14 +111,14 @@
     </div>
     <message-desc ref="messagedesc">
       <template #smsDescribe>
-        <div v-html="descript"></div>
+        <div v-html="msg"></div>
       </template>
     </message-desc>
   </div>
 </template>
 
 <script>
-import { styleVisible, searchFieldFormat, sorTable } from "@/misc/root-common";
+import { styleVisible, searchFieldFormat } from "@/misc/root-common";
 import TableCommon from "@/components/common-component/table";
 import DatePickers from "@/components/common-component/date-pickers";
 import PageCommon from "@/components/common-component/page";
@@ -132,11 +132,10 @@ export default {
     MessageDesc,
     DatePickers,
     AuditModal,
-    // RepeatAuditModal,
   },
   data() {
     return {
-      descript: "",
+      msg: "",
 
       /*查询条件 */
       formValidate: {
@@ -157,7 +156,6 @@ export default {
           title: "公司编码",
           key: "clientCode",
           fixed: "left",
-          sortable: true,
           resizable: true,
           minWidth: 200,
         },
@@ -165,60 +163,15 @@ export default {
           title: "公司名称",
           key: "orgName",
           fixed: "left",
-          sortable: true,
           resizable: true,
           minWidth: 200,
         },
-
         {
           title: "核算主体编码",
           key: "hsztCode",
-          sortable: true,
           minWidth: 220,
           resizable: true,
-          sortMethod: (a, b, type) => {
-            return sorTable(a, b, type);
-          },
         },
-        {
-          title: "核算主体名称",
-          key: "hsztName",
-          sortable: true,
-          minWidth: 220,
-          resizable: true,
-          sortMethod: (a, b, type) => {
-            return sorTable(a, b, type);
-          },
-        },
-        {
-          title: "税种名称",
-          key: "jsdgName",
-          sortable: true,
-          minWidth: 220,
-          resizable: true,
-          sortMethod: (a, b, type) => {
-            return sorTable(a, b, type);
-          },
-        },
-
-        {
-          title: "审核状态",
-          key: "auditStatusText",
-          sortable: true,
-          width: 120,
-          resizable: true,
-          sortMethod: (a, b, type) => {
-            return sorTable(a, b, type);
-          },
-        },
-        {
-          title: "提交人",
-          key: "submitter",
-          minWidth: 140,
-          resizable: true,
-          tooltip: true,
-        },
-
         {
           title: "操作",
           key: "id",
