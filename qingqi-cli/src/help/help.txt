@@ -1,0 +1,25 @@
+Usage:  npm run command [Options]
+
+@qingqi's project manager
+
+commands:
+
+----------------------------------------------
+
+  dev           dev a specified package
+  
+        usage : npm run dev -- --name [name in package.json]
+
+  reinstall     install-link与build-ts 命令合体
+  
+  list          项目列表
+  
+  install-link  安装 links
+
+  build-ts      编译 ts 【service，lib】
+  
+  --help        帮助文档
+
+----------------------------------------------
+
+(*≧︶≦))(￣▽￣* )ゞ
