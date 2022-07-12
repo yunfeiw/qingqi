@@ -4,7 +4,9 @@
  * @Date: 2022-06-29 15:19:55
  */
 import Vue from "vue";
-import './view-design'
+
+import 'view-design/dist/styles/iview.css';
+import './view-design';
 
 import App from "./App.vue";
 import router from "./router";
