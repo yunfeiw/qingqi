@@ -1,8 +1,3 @@
-/*
- * @Descripttion: 
- * @Author: yunfei
- * @Date: 2022-06-29 15:19:55
- */
 .DS_Store
 node_modules
 /dist

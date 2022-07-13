@@ -15,6 +15,8 @@
       <div class="header">
         <Header />
       </div>
+      <!-- 面包屑 -->
+      <crumbs-com />
       <!-- 微服务 -->
       <div id="micro_container"></div>
     </div>
@@ -23,16 +25,13 @@
 
 <script>
 import { Header, Side } from "./components/layout";
+import crumbsCom from "./components/crumbs-com";
 export default {
-  components: { Header, Side },
+  components: { Header, Side, crumbsCom },
 };
 </script>
 
 <style lang="scss">
-// * {
-//   margin: 0;
-//   padding: 0;
-// }
 .app_box {
   width: 100vw;
   height: 100vh;
@@ -42,25 +41,32 @@ export default {
   // 左
   .app_l_box {
     overflow-y: auto;
-    width: 250px;
+    width: 200px;
+    border-right: 5px solid #ccc;
   }
   // 右
   .app_r_box {
     display: flex;
     flex: 1;
     flex-direction: column;
-    background: khaki;
     // header
     .header {
       width: 100%;
-      height: 70px;
+      height: 55px;
       border-bottom: 5px solid #ccc;
-      background: darkcyan;
     }
-
+    // 微服务容器
     #micro_container {
       flex: 1;
-      background: darkmagenta;
+      > div {
+        width: 100%;
+        height: 100%;
+      }
+      // 隐藏
+
+      .micro-hide {
+        display: none;
+      }
     }
   }
 }

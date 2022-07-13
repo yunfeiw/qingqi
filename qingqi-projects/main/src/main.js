@@ -16,18 +16,18 @@ import { registerMicroApps, start } from 'qiankun';
 Vue.config.productionTip = false;
 
 registerMicroApps([
-  {
-    name: 'vue2', // app name registered
-    entry: '//172.18.9.116:9000',
-    container: '#micro_container',
-    activeRule: '/vue2',
-  },
-  {
-    name: 'vue3',
-    entry: '//172.18.9.116:9001',
-    container: '#micro_container',
-    activeRule: '/vue3',
-  },
+  // {
+  //   name: 'vue2', // app name registered
+  //   entry: '//172.18.9.116:9000',
+  //   container: '#micro_container',
+  //   activeRule: '/vue2',
+  // },
+  // {
+  //   name: 'vue3',
+  //   entry: '//172.18.9.116:9001',
+  //   container: '#micro_container',
+  //   activeRule: '/vue3',
+  // },
 ]);
 
 start();
