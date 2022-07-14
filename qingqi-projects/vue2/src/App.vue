@@ -1,6 +1,12 @@
+<!--
+ * @Descripttion: 
+ * @Author: yunfei
+ * @Date: 2022-06-27 18:07:57
+-->
 <template>
   <div id="app">
     <div id="nav">
+      <h3>vue2</h3>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>

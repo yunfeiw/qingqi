@@ -5,16 +5,53 @@
 -->
 <template>
   <div class="crumbs-com">
-    <div class="crumbs_item" v-for="item in arr" :key="item">item</div>
+    <Tag
+      class="crumbs_item"
+      v-for="item in crumbs"
+      :key="item.name"
+      closable
+      color="primary"
+      type="dot"
+      @on-close="handleClose(item)"
+      >{{ item.name }}</Tag
+    >
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+import { removeDom } from "@/micro/dom";
+// import { showMicro, removeDom } from "@/micro/dom";
 export default {
   data() {
-    return {
-      arr: [1, 2, 3, 4, 5],
-    };
+    return {};
+  },
+  computed: {
+    ...mapState({
+      crumbs: (state) => state.crumbs.crumbs,
+    }),
+  },
+  methods: {
+    ...mapActions(["rmCrumbs"]),
+    /**
+     * @descript 查找
+     */
+    findTab(data) {
+      return this.crumbs.find((e) => (e.key == data.key));
+    },
+    handleClose(item) {
+      let res = this.findTab(item);
+      // 删除当前节点，
+      this.rmCrumbs(res.key);
+      // 同时卸载实例
+      res.example.ele.unmount();
+      console.log(res.dom.classList);
+      if(res.dom.classList.includes('micro-hide')){
+        console.log('哈哈哈');
+      }
+      // 展示其他微服务
+      removeDom(res.dom);
+    },
   },
 };
 </script>

@@ -4,7 +4,7 @@
  * @Date: 2022-07-12 17:36:10
  */
 import Vue from 'vue'
-import { Menu, Submenu, MenuItem, MenuGroup, Icon, Avatar } from 'view-design';
+import { Menu, Submenu, MenuItem, MenuGroup, Icon, Avatar,Tag } from 'view-design';
 
 Vue.component('Menu', Menu);
 Vue.component('Submenu', Submenu);
@@ -12,3 +12,5 @@ Vue.component('MenuGroup', MenuGroup);
 Vue.component('MenuItem', MenuItem);
 Vue.component('Avatar', Avatar);
 Vue.component('Icon', Icon);
+Vue.component('Tag', Tag);
+
