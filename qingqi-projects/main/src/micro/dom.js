@@ -28,7 +28,7 @@ export const createDOM = (name) => {
     return container;
 }
 // 删除
-export const removeDom = (dom) => {
+export const removeAutoDom = (dom) => {
     // 节点
     let nextDOM = dom.previousSibling || dom.nextSibling;
     // 隐藏
@@ -37,4 +37,9 @@ export const removeDom = (dom) => {
     dom.remove();
     // 展示
     nextDOM && nextDOM.classList.remove("micro-hide");
+}
+
+export const rmMircoDom = (dom) => {
+    // 删除节点
+    dom.remove();
 }

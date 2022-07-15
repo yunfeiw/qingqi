@@ -5,16 +5,11 @@
 -->
 <template>
   <Menu :theme="theme" width="auto">
-    <MenuItem name="vue2" to="/vue2"
-      ><div @click="loadApp('vue2', '//172.18.9.116:9000', '1')">
-        vue2
-      </div></MenuItem
-    >
-    <MenuItem name="vue3" to="/vue3"
-      ><div @click="loadApp('vue3', '//172.18.9.116:9001', '2')">
-        vue3
-      </div></MenuItem
-    >
+    <MenuItem v-for="item in menus" :name="item.key" :key="item.key">
+      <div @click="loadApp(item.name, item.url, item.key)">
+        {{ item.name }}
+      </div>
+    </MenuItem>
   </Menu>
 </template>
 <script>
@@ -25,6 +20,21 @@ import { hideMicro, createDOM } from "@/micro/dom";
 export default {
   data() {
     return {
+      menus: [
+        {
+          name: "vue2",
+          route: "/vue2",
+          url: "//172.18.9.116:9000",
+          key: 2,
+        },
+        {
+          name: "vue3",
+          route: "/vue3",
+          url: "//172.18.9.116:9001",
+          key: 3,
+        },
+      ],
+      menuMap: {},
       micros: [],
     };
   },
@@ -40,7 +50,14 @@ export default {
   },
   methods: {
     ...mapActions(["addCrumbs"]),
-
+    /**
+     * @descript 映射
+     */
+    arrToMap(arr) {
+      arr.forEach((item) => {
+        this.menuMap[item.key] = item;
+      });
+    },
     /**
      * @descript 校验是否存在
      * */
@@ -68,14 +85,11 @@ export default {
         dom && dom.classList.remove("micro-hide");
         return;
       }
-
       // 创建容器
       const container = createDOM(name);
-
       // 面包屑
       let example = {};
       this.addCrumbs({ name, key, dom: container, example });
-
       // 创建微服务
       loadApp(
         { name, entry: url, container: container },
@@ -90,6 +104,11 @@ export default {
           console.error("微服务创建失败！");
         });
     },
+    // 解析 当前路径  -map-> 菜单 -> 创建
+  },
+  mounted() {
+    // 映射
+    this.arrToMap(this.menus);
   },
 };
 </script>
