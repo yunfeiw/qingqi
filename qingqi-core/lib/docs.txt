@@ -5,7 +5,7 @@ Commands：
 
   *  qingqi  init  [ProjectName]  初始化项目  默认初始化，当前执行环境下所有项目
 
-  *  qingqi  seve  [ProjectName]  开启服务    默认会启动，当前运行环境下所有项目
+  *  qingqi  serve [ProjectName]  开启服务    默认会启动，当前运行环境下所有项目
     
   *  qingqi  build [ProjectName]  打包        默认打包，当前运行环境下所有项目   
     
@@ -18,6 +18,16 @@ Commands：
     
   *  qingqi page                  创建页面
                                       - vue
+                                        
+                                        * list-page   列表页
+                                        * tabs-page   tab页
+
+                                        * list-model  列表弹出层
+                                        * form-model  表单弹出层
+                                        
+                                        * list-drawer 列表抽屉
+                                        * form-drawer 表单抽屉
+
                                       - jsx
                                       - html
                                       - jsp
