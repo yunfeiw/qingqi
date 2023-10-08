@@ -21,7 +21,7 @@
     "yargs-parser": "^21.0.1"
   },
   "dependencies": {},
-  "qingqi":{
-    "type":"cli"
+  "qingqi": {
+    "type": "cli"
   }
 }
