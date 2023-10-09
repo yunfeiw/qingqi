@@ -19,7 +19,7 @@
             <Select v-model="formValidate.val1" filterable>
               <Option value="">请选择</Option>
               <Option
-                v-for="item in XL1"
+                v-for="(item, index) in XL1"
                 :value="item.dictCode"
                 :key="item.dictCode"
                 >{{ item.dictName }}</Option
@@ -28,47 +28,68 @@
           </FormItem>
         </Col>
         <Col span="6">
-          <FormItem label="申报期" prop="val2">
+          <FormItem label="文本" prop="val2">
+            <Input
+              @on-enter="getList"
+              placeholder="请输入"
+              v-model="formValidate.val2"
+            />
+          </FormItem>
+        </Col>
+        <Col span="6">
+          <FormItem label="申报期" prop="val3">
             <DatePicker
               type="month"
               :clearable="false"
               style="width: 100%"
-              :value="formValidate.val2"
-              @on-change="formValidate.val2 = $event"
+              :value="formValidate.val3"
+              @on-change="formValidate.val3 = $event"
             ></DatePicker>
           </FormItem>
         </Col>
-        <Col span="6">
-          <FormItem label="多选" prop="val3">
-            <Select
-              multiple
-              filterable
-              :max-tag-count="1"
-              :max-tag-placeholder="() => '...'"
-              v-model="formValidate.val3"
-              @on-change="(e) => selectListen(e, 'val3')"
-            >
-              <Option value="">请选择</Option>
-              <Option
-                v-for="item in XL2"
-                :value="item.dictCode"
-                :key="item.dictCode"
-                >{{ item.dictName }}</Option
+
+        <template v-if="formshow">
+          <Col span="6">
+            <FormItem label="文本" prop="val4">
+              <Input
+                @on-enter="getList"
+                placeholder="请输入"
+                v-model="formValidate.val4"
+              />
+            </FormItem>
+          </Col>
+          <Col span="6">
+            <FormItem label="下拉" prop="val5">
+              <Select
+                multiple
+                filterable
+                :max-tag-count="1"
+                v-model="formValidate.val5"
+                :max-tag-placeholder="() => '...'"
+                @on-change="(e) => selectListen(e, 'val5')"
               >
-            </Select>
-          </FormItem>
-        </Col>
-        <Col span="6">
-          <FormItem label="时间" prop="val4">
-            <DatePicker
-              type="daterange"
-              style="width: 100%"
-              placeholder="请选择"
-              :value="formValidate.val4"
-              @on-change="formValidate.val4 = $event"
-            ></DatePicker>
-          </FormItem>
-        </Col>
+                <Option value="">请选择</Option>
+                <Option
+                  v-for="item in XL2"
+                  :value="item.dictCode"
+                  :key="item.dictCode"
+                  >{{ item.dictName }}</Option
+                >
+              </Select>
+            </FormItem>
+          </Col>
+          <Col span="6">
+            <FormItem label="日期" prop="val6">
+              <DatePicker
+                type="daterange"
+                style="width: 100%"
+                placeholder="请选择"
+                :value="formValidate.val6"
+                @on-change="formValidate.val6 = $event"
+              ></DatePicker>
+            </FormItem>
+          </Col>
+        </template>
 
         <Col span="6">
           <FormItem label="" class="text-right" :label-width="0">
@@ -77,11 +98,20 @@
             </a>
             <a
               href="javascript:;"
-              class="btn searchresetBtn ml-2"
               @click="resethandle"
+              class="btn searchresetBtn ml-2"
             >
               重置
             </a>
+            <a class="ml-2" href="javascript:;" @click="formshow = !formshow"
+              >{{ formshow ? "收起" : "展开" }}
+              <i
+                class="ivu-icon ml-1"
+                :class="
+                  formshow ? 'ivu-icon-ios-arrow-up' : 'ivu-icon-ios-arrow-down'
+                "
+              ></i
+            ></a>
           </FormItem>
         </Col>
       </Row>
@@ -132,10 +162,14 @@ import confirmDelete from "@/components/common-component/modal/confirm-delete";
 import errortip from "@/components/common-component/custom-modal/errortip.vue";
 export default {
   components: {
-    errortip,
-    PageCommon,
     TableCommon,
     confirmDelete,
+    PageCommon,
+    CreateCjtask,
+    ModifyState,
+    UploadCom,
+    errortip,
+    CollectionRecords,
   },
   data() {
     return {
@@ -143,12 +177,15 @@ export default {
       ckid: "",
       XL1: [],
       XL2: [],
+      formshow: false,
       /*查询条件 */
       formValidate: {
         val1: "",
-        val2: getCurrentDate(0), // 申报期
-        val3: "",
-        val4: [],
+        val2: "",
+        val3: getCurrentDate(0),
+        val4: "",
+        val5: [],
+        val6: [],
       },
       /*表格 */
       columnsTable: [
@@ -244,25 +281,25 @@ export default {
           },
         },
         {
-          title: "开始执行时间",
-          key: "sendTime",
+          title: "时间",
+          key: "val6",
           ellipsis: true,
           tooltip: true,
           align: "center",
           minWidth: 180,
           render: (h, p) => {
-            const { sendTime } = p.row;
+            const { val6 } = p.row;
             return h(
-              "div",
-              sendTime ? moment(sendTime).format("YYYY-MM-DD HH:mm:ss") : "--"
+              "p",
+              val6 ? moment(val6).format("YYYY-MM-DD HH:mm:ss") : "--"
             );
           },
         },
         {
           title: "操作",
           key: "id",
-          fixed: "right",
           width: 250,
+          fixed: "right",
           render: (h, p) => {
             const { id } = p.row;
 
@@ -343,11 +380,11 @@ export default {
         return;
       }
       this.ckid = { openIds: arrs.map((e) => e.openId).join(",") };
-      this.$refs.btnEle.deleteconfirm = true;
+      this.$refs.cjEle.deleteconfirm = true;
     },
     btnhandle() {
       this.$loading.show();
-      this.$api.xxxxx.zzzzz(this.ckid).then((res) => {
+      this.$api.taxfilecollection.sendCollectTask(this.ckid).then((res) => {
         this.$loading.hide();
         this.$refs.btnEle.deleteconfirm = false;
         // 提示
@@ -360,7 +397,6 @@ export default {
         }
       });
     },
-
     // 导出
     download() {
       const arrs = this.$refs.tablecon.selectdata;
@@ -386,12 +422,6 @@ export default {
         onStep: (step) => {},
       });
     },
-    /**回车键 */
-    searchKey(e) {
-      if (e.keyCode == 13) {
-        this.getList();
-      }
-    },
     /**重置 */
     resethandle() {
       this.$refs.formValidate.resetFields();
@@ -400,21 +430,23 @@ export default {
     },
     // 列表参数
     getSearchField() {
-      const { val3, val4 } = this.formValidate;
+      const { val5, val6 } = this.formValidate;
 
       return searchFieldFormat(
         [
           { f: "val1", op: "eq", t: "i" },
           { f: "val2", op: "like", t: "s" },
           { f: "val3", op: "eq", t: "s" },
-          { f: "val4Begin", op: "eq", t: "s" },
-          { f: "val4TimeEnd", op: "eq", t: "s" },
+          { f: "val4", op: "eq", t: "s" },
+          { f: "val5", op: "eq", t: "s" },
+          { f: "val6Begin", op: "eq", t: "s" },
+          { f: "val6End", op: "eq", t: "s" },
         ],
         {
           ...this.formValidate,
-          val4Begin: val4Time[0] || "",
-          val4End: val4Time[1] || "",
-          val3: [...val3].join(","),
+          val6Begin: val6[0] || "",
+          val6End: val6[1] || "",
+          val5: [...val5].join(","),
         }
       );
     },
@@ -433,7 +465,7 @@ export default {
         condition: JSON.stringify(this.getSearchField()),
       };
       // 请求
-      this.$api.xxxxx.zzzzz(params).then((res) => {
+      this.$api.taxfilecollection.queryCollectList(params).then((res) => {
         this.$loading.hide();
         const { result, data, page } = res.data;
         if (result == "success") {

@@ -15,38 +15,16 @@ file="/WEB-INF/views/include.inc.jsp" %>
     <link
       rel="stylesheet"
       href="${ctx}/styles2.0/layui/css/layui.css?v20201125"
-      media="all"
     />
     <link rel="stylesheet" href="${ctx}/styles2.0/css/common.css?v20201125" />
     <!-- js -->
-    <script
-      type="text/javascript"
-      src="${ctx}/styles2.0/js/jquery-1.9.1.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="${ctx}/styles2.0/js/common.js?v20201125"
-    ></script>
-    <script
-      type="text/javascript"
-      src="${ctx}/styles2.0/layui/layui.js?v20201125"
-    ></script>
-    <script
-      type="text/javascript"
-      src="${ctx}/styles2.0/layui/layTableConfig.js?v20210906"
-    ></script>
-    <script
-      type="text/javascript"
-      src="${ctx}/styles2.0/layui/xm-select.js?v20201125"
-    ></script>
-    <script
-      type="text/javascript"
-      src="${ctx}/styles/js/H-ui.admin.js?v20210126?v20201125"
-    ></script>
-    <script
-      type="text/javascript"
-      src="${ctx}/styles2.0/components/select-query.js?v2020.12.1"
-    ></script>
+    <script src="${ctx}/styles2.0/js/jquery-1.9.1.min.js"></script>
+    <script src="${ctx}/styles2.0/js/common.js?v20201125"></script>
+    <script src="${ctx}/styles2.0/layui/layui.js?v20201125"></script>
+    <script src="${ctx}/styles2.0/layui/layTableConfig.js?v20210906"></script>
+    <script src="${ctx}/styles2.0/layui/xm-select.js?v20201125"></script>
+    <script src="${ctx}/styles/js/H-ui.admin.js?v20210126?v20201125"></script>
+    <script src="${ctx}/styles2.0/components/select-query.js?v2020.12.1"></script>
     <script type="text/javascript" src="${ctx}/common/dict"></script>
     <style>
       .item_toggle {
@@ -68,21 +46,17 @@ file="/WEB-INF/views/include.inc.jsp" %>
         </select>
       </div>
       <!-- 表单 -->
-      <form
-        id="taDeclaration"
-        action="${ctx}/business/report/exportData"
-        method="post"
-      >
+      <form method="post" action="${ctx}/business/report/exportData">
         <div class="layui-form">
           <div class="layui-form-item">
             <div class="layui-inline">
               <label class="layui-form-label">公司编码：</label>
               <div class="layui-input-inline">
                 <input
-                  name="clientCode"
                   type="text"
-                  class="layui-input"
                   id="clientCode"
+                  name="clientCode"
+                  class="layui-input"
                   placeholder="输入公司编码"
                 />
               </div>
@@ -92,11 +66,11 @@ file="/WEB-INF/views/include.inc.jsp" %>
               <label class="layui-form-label">申报日期：</label>
               <div class="layui-input-inline">
                 <input
-                  type="text"
                   readonly
-                  class="layui-input laydate-icon-bg"
-                  name="declareDate"
+                  type="text"
                   id="declareDate"
+                  name="declareDate"
+                  class="layui-input laydate-icon-bg"
                 />
               </div>
             </div>

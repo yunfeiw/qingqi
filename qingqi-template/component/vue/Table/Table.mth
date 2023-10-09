@@ -1,0 +1,50 @@
+    /**重置 */
+    resethandle() {
+      this.$refs.formValidate.resetFields();
+      this.$refs.tablepage.pageReset();
+      this.getList();
+    },
+    // 列表参数
+    getSearchField() {
+      const { val3, val4 } = this.formValidate;
+
+      return searchFieldFormat(
+        [
+          { f: "val1", op: "eq", t: "i" },
+          { f: "val2", op: "like", t: "s" },
+          { f: "val3", op: "eq", t: "s" },
+          { f: "val4Begin", op: "eq", t: "s" },
+          { f: "val4TimeEnd", op: "eq", t: "s" },
+        ],
+        {
+          ...this.formValidate,
+          val4Begin: val4[0] || "",
+          val4End: val4[1] || "",
+          val3: [...val3].join(","),
+        }
+      );
+    },
+    // 列表查询
+    getList(...rest) {
+      this.$loading.show();
+      // 初始化
+      this.dataTable = [];
+      this.$refs.tablecon.selectdata = [];
+      rest.indexOf("pagejump") < 0 && (this.$refs.tablepage.current = 1);
+      // 参数
+      const { current, pagesize } = this.$refs.tablepage;
+      const params = {
+        page: current,
+        per_page: pagesize,
+        condition: JSON.stringify(this.getSearchField()),
+      };
+      // 请求
+      this.$api.xxxxx.zzzzz(params).then((res) => {
+        this.$loading.hide();
+        const { result, data, page } = res.data;
+        if (result == "success") {
+          this.dataTable = data;
+          this.$refs.tablepage.tabelTotal(page.total);
+        }
+      });
+    },

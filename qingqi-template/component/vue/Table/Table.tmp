@@ -1,0 +1,7 @@
+<table-common
+    ref="tablecon"
+    v-autoHeight:tableMinHeight="{ context: this }"
+    :columnsTable="columnsTable"
+    :dataTable="dataTable"
+/>
+<page-common ref="tablepage" :dataTableShow="getList" />

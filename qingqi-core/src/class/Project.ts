@@ -7,7 +7,12 @@ import { resolve } from "path"
 
 export class Project {
     private cwd: string
-    constructor(private type: string, private name: string, private dir?: string, private feature?: string,) {
+    constructor(
+        private type: string,
+        private name: string,
+        private dir?: string,
+        private features?: string,
+    ) {
         this.cwd = resolve(process.cwd(), name)
     }
 
@@ -20,10 +25,10 @@ export class Project {
     public getType() {
         return this.type
     }
-    public getFeature() {
-        return this.feature
-    }
     public getDir() {
         return this.dir
+    }
+    public getFeatures() {
+        return this.features
     }
 }

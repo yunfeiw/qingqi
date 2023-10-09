@@ -78,7 +78,7 @@ export default {
         if (valid) {
           this.$loading.show();
           // 请求
-          this.$api.xxxxxxxxxxx.zzzzzzzzz({ ...this.formdata }).then((res) => {
+          this.$api.xxxxx.zzzzz({ ...this.formdata }).then((res) => {
             this.$loading.hide();
             const { result, infos } = res.data;
             if (result == "success") {
