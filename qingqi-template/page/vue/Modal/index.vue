@@ -1,10 +1,16 @@
 <!--
- * @Descripttion:  新增
- * @Author: yunfei
- * @Date: 2023-07-18 15:25:39
+ * @Descripttion:  
+ * @Author: 
+ * @Date: 
 -->
 <template>
-  <Modal v-model="show" title="提示" :width="450" :mask-closable="false">
+  <Modal
+    v-model="show"
+    title="提示"
+    :width="450"
+    :mask-closable="false"
+    :styles="{ top: '20px' }"
+  >
     <div class="col-md-12">
       <Form
         ref="formData"

@@ -34,11 +34,11 @@ export default {
     tabhandle(v) {
       if (v == "tab1") {
         this.$nextTick(() => {
-          this.$refs.tab1Ele.dataTableShow();
+          this.$refs.tab1Ele.getList();
         });
       } else {
         this.$nextTick(() => {
-          this.$refs.tab2Ele.dataTableShow();
+          this.$refs.tab2Ele.getList();
         });
       }
     },

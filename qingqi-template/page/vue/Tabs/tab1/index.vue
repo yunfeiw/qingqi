@@ -161,16 +161,7 @@ import confirmDelete from "@/components/common-component/modal/confirm-delete";
 // 提示
 import errortip from "@/components/common-component/custom-modal/errortip.vue";
 export default {
-  components: {
-    TableCommon,
-    confirmDelete,
-    PageCommon,
-    CreateCjtask,
-    ModifyState,
-    UploadCom,
-    errortip,
-    CollectionRecords,
-  },
+  components: { errortip, PageCommon, TableCommon, confirmDelete },
   data() {
     return {
       msg: "",
