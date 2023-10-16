@@ -1,19 +1,14 @@
-/*
- * @Descripttion: 解析命令
- * @Author: yunfei
- * @Date: 2023-10-13 16:55:31
- */
-import { compileFile } from 'pug'
-import { resolve } from 'path'
-import { writeFile } from 'fs'
+import moment from 'moment';
+import { render } from 'nunjucks';
+import { writeFileSync } from 'fs';
 
-const compiledFunction = compileFile(resolve(__dirname, './tmp/vue.pug'));
+import { Cmd, CMD_TYPES } from './types/cmd.js';
+// 时间
+const DATE = moment().format('YYYY年MM月DD日 HH:mm:ss');
 
-const context = compiledFunction({
-    name: 1,
-    bb: { name: '1' }
-})
+export default class CreatePage {
+    constructor(cmd: CMD_TYPES) {
+        let obj = new Cmd(cmd);
+    }
+}
 
-writeFile(resolve(__dirname, 'index.vue'), context, (err) => {
-    console.log(err)
-})
