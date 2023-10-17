@@ -1,0 +1,199 @@
+<template>
+    <Drawer title="提示" width="1000" :closable="false" v-model="show">
+
+   
+        {% if form -%} 
+        <Form
+          ref="formdata"
+          :model="formdata"
+          autocomplete="off"
+          :label-width="90"
+          onsubmit="return false;"
+        >
+          {% for item in forms  %}
+              {% if item=='input' -%}
+              <Col span="8">
+                <FormItem label="文本" prop="val2">
+                  <Input
+                    @on-enter="getList"
+                    placeholder="请输入"
+                    v-model="formValidate.val2"
+                  />
+                </FormItem>
+              </Col>
+              {%- endif %}
+              {% if item=='select' -%}
+              <Col span="8">
+                <FormItem label="下拉" prop="val1">
+                  <Select v-model="formValidate.val1" filterable>
+                    <Option value="">请选择</Option>
+                    <Option
+                      v-for="(item, index) in XL1"
+                      :value="item.dictCode"
+                      :key="item.dictCode"
+                      >{{ item.dictName }}</Option
+                    >
+                  </Select>
+                </FormItem>
+              </Col>
+              {%- endif %}
+              {% if item=='month' -%}
+              <Col span="8">
+                <FormItem label="月份" prop="val3">
+                  <DatePicker
+                    type="month"
+                    :clearable="false"
+                    style="width: 100%"
+                    :value="formValidate.val3"
+                    @on-change="formValidate.val3 = $event"
+                  />
+                </FormItem>
+              </Col>
+              {%- endif %}
+              {% if item=='date' -%}
+              <Col span="8">
+                <FormItem label="日期" prop="val6">
+                  <DatePicker
+                    type="daterange"
+                    style="width: 100%"
+                    placeholder="请选择"
+                    :value="formValidate.val6"
+                    @on-change="formValidate.val6 = $event"
+                  />
+                </FormItem>
+              </Col>
+              {%- endif %}
+            
+              {% if item=='multiple-select' -%}
+              <Col span="8">
+                <FormItem label="下拉" prop="val5">
+                  <Select
+                    multiple
+                    filterable
+                    :max-tag-count="1"
+                    v-model="formValidate.val5"
+                    :max-tag-placeholder="() => '...'"
+                    @on-change="(e) => selectListen(e, 'val5')"
+                  >
+                    <Option value="">请选择</Option>
+                    <Option
+                      v-for="item in XL2"
+                      :value="item.dictCode"
+                      :key="item.dictCode"
+                      >{{ item.dictName }}</Option
+                    >
+                  </Select>
+                </FormItem>
+              </Col>
+              {%- endif %}
+          {%- endfor %}
+          </Row>
+        </Form>
+        {%- endif %}
+
+        {% if table -%} 
+        {% include "./tmp/table.tjs" %} 
+        {%- endif %}
+    
+        
+        {% if delete -%} 
+        {% include "./tmp/delete.tjs" %} 
+        {%- endif %}
+
+      
+        <div align="right">
+            {% if save %}
+            <Button style="margin-right: 8px" @click="show = false">取消</Button>
+            <Button type="primary" @click="save">保存</Button>
+            {% endif %}
+        </div>
+    </Drawer>
+  </template>
+  
+  <script>
+    
+    {% if  table -%}
+    {% include "./import/table.ijs" %}
+    {%- endif %}
+    {% if  delete -%}
+    {% include "./import/delete.ijs" %}
+    {%- endif %}
+    
+  export default {
+   
+    components: {
+        {% if  table -%}
+        {% include "./component/table.com" %}
+        {%- endif %}
+        {% if  delete -%}
+        {% include "./component/delete.com" %}
+        {%- endif %}
+      },
+      data() {
+        return {
+          {% if  delete -%}
+          {% include "./data/delete.data" %}
+          {%- endif %}
+          {% if  formshow -%}
+          formshow:false,
+          {%- endif %}
+          formdata:{
+  
+          },
+          {% if  table -%}
+          {% include "./data/table.data" %}
+          {%- endif %}
+        };
+      },
+      mounted() {
+      },
+      methods: {
+        {% if delete -%}
+        {% include "./methods/delete.sjs" %}
+        {%- endif %}
+        {% if download -%}
+        {% include "./methods/download.sjs" %}
+        {%- endif %}
+        {% if upload -%}
+        {% include "./methods/upload.sjs" %}
+        {%- endif %}
+        {% if  table -%}
+        {% include "./methods/table.sjs" %}
+        {%- endif %}
+        // 初始化
+        init() {
+            this.show = true;
+            this.$refs.formdata.resetFields();
+        },
+        {% if save -%}
+        // 保存
+        save() {
+            this.$refs.formdata.validate((valid) => {
+            if (valid) {
+                this.$loading.show();
+                // 请求
+                this.$api.xxxxx.zzzzz({ ...this.formdata }).then((res) => {
+                this.$loading.hide();
+                const { result, infos } = res.data;
+                if (result == "success") {
+                    this.show = false;
+                    this.$emit("getList");
+                    this.$Message.success(infos);
+                } else {
+                    this.$Message.error(infos);
+                }
+                });
+            }
+            });
+        },
+        {%- endif %}
+
+    },
+  };
+  </script>
+  
+  <style lang="less">
+  .aaa_form {
+  }
+  </style>
+  

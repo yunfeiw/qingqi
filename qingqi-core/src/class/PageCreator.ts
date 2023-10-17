@@ -37,7 +37,7 @@ export class PageCreator {
             await inquirer.prompt([
                 {
                     type: 'list',
-                    choices: ['List', 'Modal', 'Drawer', 'Tabs'],
+                    choices: ['List', 'Modal', 'Drawer'],
                     message: "请选择page类型",
                     name: 'features'
                 }

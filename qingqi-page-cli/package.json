@@ -1,0 +1,23 @@
+{
+  "name": "@qingqi/page-cli",
+  "version": "1.0.0",
+  "description": "动态模板生成工具",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "node ./dist/index.js"
+  },
+  "dependencies": {
+    "@types/node": "^20.8.5",
+    "ejs": "^3.1.9",
+    "moment": "^2.29.4",
+    "month": "^2.0.1",
+    "node-cmd": "^5.0.0",
+    "nunjucks": "^3.2.4",
+    "pug": "^3.0.2"
+  },
+  "author": "yunfei",
+  "license": "ISC",
+  "qingqi": {
+    "type": "cli"
+  }
+}

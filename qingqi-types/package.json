@@ -1,14 +1,14 @@
 {
-  "name": "@qingqi/template",
+  "name": "@qingqi/types",
   "version": "1.0.0",
-  "description": "模板库",
-  "main": "index.js",
+  "description": "",
+  "main": "/src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "yunfei",
+  "author": "",
   "license": "ISC",
   "qingqi": {
-    "type": "library"
+    "type": "lib"
   }
 }

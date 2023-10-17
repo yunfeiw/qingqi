@@ -1,0 +1,2 @@
+confirmDelete,
+errortip,

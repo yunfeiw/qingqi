@@ -1,0 +1,6 @@
+    <!-- 询问框 -->
+    <confirm-delete :deleteData="btnhandle" ref="btnEle">
+      <div>确认提示？</div>
+    </confirm-delete>
+    <!-- 失败提示 -->
+    <errortip tit="提示" ref="errTip"> 失败原因：{{ msg }} </errortip>

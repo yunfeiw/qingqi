@@ -1,0 +1,144 @@
+
+      /*表格 */
+      columnsTable: [
+        {% if stableelection -%}
+        {
+          type: "selection",
+          width: "60",
+          fixed: "left",
+          align: "center",
+        },
+        {%- endif %}
+
+        {
+          title: "公司名称",
+          key: "orgName",
+          ellipsis: true,
+          tooltip: true,
+          resizable: true,
+          fixed: "left",
+          minWidth: 340,
+          render: (h, p) => {
+            const { orgName, clientCode } = p.row;
+            return CusInfoTooltip(h, clientCode, orgName);
+          },
+        },
+
+        {
+          title: "税号",
+          key: "orgTaxNum",
+          ellipsis: true,
+          tooltip: true,
+          flexd: "left",
+          minWidth: 250,
+        },
+        {
+          title: "申报期",
+          key: "declareMonth",
+          width: 180,
+          align: "center",
+          render: (h, p) => {
+            const { declareMonth } = p.row;
+            return h(
+              "div",
+              declareMonth ? moment(declareMonth).format("YYYY-MM") : "--"
+            );
+          },
+        },
+        {
+          title: "档案类型",
+          key: "gtbtTaxType",
+          width: 200,
+          tooltip: true,
+          render: (h, p) => {
+            const { gtbtTaxType } = p.row;
+            let item =
+              this.GTBT_TAX_TYPE.find((e) => e.dictCode == gtbtTaxType) || {};
+            return h("div", item["dictName"] || "--");
+          },
+        },
+        {
+          title: "采集状态",
+          key: "collectStatus",
+          ellipsis: true,
+          tooltip: true,
+          width: 160,
+          render: (h, p) => {
+            const { collectStatus, collectMessage } = p.row;
+            let item =
+              this.COLLECT_STATUS.find((e) => e.dictCode == collectStatus) ||
+              {};
+            return h(
+              "Tag",
+              {
+                props: {
+                  type: "dot",
+                  color: collectStatus == 3 ? "error" : "primary",
+                },
+              },
+              [
+                h(
+                  "a",
+                  {
+                    on: {
+                      click: () => {
+                        if (collectStatus == 3) {
+                          this.msg = collectMessage;
+                          this.$refs.errTip.show = true;
+                        }
+                      },
+                    },
+                  },
+                  item["dictName"] || "--"
+                ),
+              ]
+            );
+          },
+        },
+        {
+          title: "时间",
+          key: "val6",
+          ellipsis: true,
+          tooltip: true,
+          align: "center",
+          minWidth: 180,
+          render: (h, p) => {
+            const { val6 } = p.row;
+            return h(
+              "p",
+              val6 ? moment(val6).format("YYYY-MM-DD HH:mm:ss") : "--"
+            );
+          },
+        },
+        {% if tableaction -%}
+        {
+          title: "操作",
+          key: "id",
+          width: 250,
+          fixed: "right",
+          render: (h, p) => {
+            const { id } = p.row;
+
+            var arr = [];
+            arr.push(
+              h(
+                "a",
+                {
+                  attrs: {
+                    class: "vouchericon",
+                  },
+                  on: {
+                    click: () => {
+                      this.$refs.czEle.init(id);
+                    },
+                  },
+                },
+                "操作"
+              )
+            );
+            return operatorBtn(arr, h);
+          },
+        },
+        {%- endif %}
+      ],
+      dataTable: [],

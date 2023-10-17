@@ -1,0 +1,10 @@
+
+      <Tooltip
+        content="导入"
+        placement="top"
+        class="float-right ml-2 mt-1 tooltipcon"
+      >
+        <a @click="download">
+          <i class="ioss-exportin cursor_pointer fontsize16"></i>
+        </a>
+      </Tooltip>
