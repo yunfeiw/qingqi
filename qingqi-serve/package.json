@@ -40,5 +40,8 @@
     "url": ""
   },
   "author": "yunfei",
-  "license": "MIT"
+  "license": "MIT",
+  "qingqi": {
+    "type": "serve"
+  }
 }

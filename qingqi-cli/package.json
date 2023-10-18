@@ -1,7 +1,7 @@
 {
-  "name": "qingqi-cli",
+  "name": "@qingqi/cli",
   "version": "1.0.0",
-  "description": "支持微服务",
+  "description": "初始化、构建项目工具",
   "main": "index.js",
   "scripts": {
     "list": "ts-node ./src/index.ts list",
@@ -18,5 +18,8 @@
     "chalk": "^4.1.2",
     "yargs-parser": "^21.0.1"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "qingqi": {
+    "type": "cli"
+  }
 }
