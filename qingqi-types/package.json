@@ -1,7 +1,7 @@
 {
   "name": "@qingqi/types",
   "version": "1.0.0",
-  "description": "",
+  "description": "类型依赖库",
   "main": "/src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
