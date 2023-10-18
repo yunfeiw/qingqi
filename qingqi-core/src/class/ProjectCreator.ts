@@ -12,7 +12,7 @@ export class ProjectCreator {
         const result = await inquirer.prompt([
             {
                 type: 'list',
-                choices: ['vue-cli', 'vue-qiankun', 'component'],
+                choices: ['vue-cli', 'vue-qiankun'],
                 messgae: "请选择项目类型",
                 name: 'type'
             },
@@ -31,7 +31,7 @@ export class ProjectCreator {
     }
 
     public createProjectFromTemplate(project: Project) {
-        const templateDir = resolve(project.getName(), __dirname, '../../../qingqi-template', project.getType())
+        const templateDir = resolve(project.getName(), __dirname, '../../../qingqi-projects', project.getType())
         console.log(templateDir);
         // 模板可能不存在
         if (!existsSync(templateDir)) {
