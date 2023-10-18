@@ -1,5 +1,5 @@
 {
-  "name": "@qingqi/page-cli",
+  "name": "@qingqi/uicg",
   "version": "1.0.0",
   "description": "动态模板生成工具",
   "main": "dist/index.js",
