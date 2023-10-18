@@ -15,7 +15,7 @@
     },
     btnhandle() {
         this.$loading.show();
-        this.$api.taxfilecollection.sendCollectTask(this.ckid).then((res) => {
+        this.$api.{{apiname}}.sendCollectTask(this.ckid).then((res) => {
             this.$loading.hide();
             this.$refs.btnEle.deleteconfirm = false;
             // 提示

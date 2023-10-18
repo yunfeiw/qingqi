@@ -11,9 +11,9 @@ export type CMD = {
     dir: boolean,
     feature: 'List' | 'Modal' | 'Drawer' | 'Tabs',
     // contens: ['form' | 'table'],
-    forms: ['input' | 'select' | 'month' | 'date' | 'multiple-select' | 'formshow' | 'void'],
+    forms: ['input' | 'select' | 'month' | 'date' | 'multiple-select' | 'formshow' | 'formsearch' | 'void'],
     table: ['selection' | 'action' | 'slot' | 'void'],
-    other: ['delete' | 'donwload' | 'upload' | 'void']
+    other: ['save' | 'delete' | 'donwload' | 'upload' | 'void']
 }
 
 export class Cmd {

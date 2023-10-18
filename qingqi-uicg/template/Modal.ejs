@@ -93,6 +93,23 @@
             </Col>
             {%- endif %}
           {% endfor %}
+
+          {% if formsearch -%}
+          <Col span="8">
+            <FormItem label="" class="text-right" :label-width="0">
+              <a href="javascript:;" class="btn searchBtn" @click="getList()">
+                搜索
+              </a>
+              <a
+                href="javascript:;"
+                @click="resethandle"
+                class="btn searchresetBtn ml-2"
+              >
+                重置
+              </a>
+            </FormItem>
+          </Col>
+          {%- endif %}
           </Row>
         </Form>
         {%- endif %}
@@ -179,7 +196,7 @@
             if (valid) {
                 this.$loading.show();
                 // 请求
-                this.$api.xxxxx.zzzzz({ ...this.formdata }).then((res) => {
+                this.$api.{{apiname}}.zzzzz({ ...this.formdata }).then((res) => {
                 this.$loading.hide();
                 const { result, infos } = res.data;
                 if (result == "success") {

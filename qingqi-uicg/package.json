@@ -1,7 +1,7 @@
 {
   "name": "@qingqi/uicg",
   "version": "1.0.0",
-  "description": "动态模板生成工具",
+  "description": "命令配置模板",
   "main": "dist/index.js",
   "scripts": {
     "dev": "node ./dist/index.js"
@@ -18,6 +18,9 @@
   "author": "yunfei",
   "license": "ISC",
   "qingqi": {
-    "type": "cli"
+    "type": "cli",
+    "lib": [
+      "@qingqi/utils"
+    ]
   }
 }

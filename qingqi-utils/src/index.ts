@@ -5,3 +5,4 @@
  */
 export * from './Emiter'
 export * from './Storage'
+export * from './TxtLower'

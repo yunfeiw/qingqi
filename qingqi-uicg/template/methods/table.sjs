@@ -41,7 +41,7 @@
         condition: JSON.stringify(this.getSearchField()),
       };
       // 请求
-      this.$api.taxfilecollection.queryCollectList(params).then((res) => {
+      this.$api.{{apiname}}.queryCollectList(params).then((res) => {
         this.$loading.hide();
         const { result, data, page } = res.data;
         if (result == "success") {
