@@ -3,9 +3,10 @@
  * @Author: yunfei
  * @Date: 2023-10-13 16:55:31
  */
-import { render } from 'nunjucks';
-import { writeFileSync, existsSync, mkdirSync } from 'fs';
-import { resolve } from 'path'
+// import { render, renderString, compile } from 'nunjucks';
+import nunjucks from 'nunjucks';
+import { writeFileSync, existsSync, readFileSync, mkdirSync } from 'fs';
+import { resolve, join } from 'path'
 import { CMD } from './types/cmd';
 import { ParseCmd } from './class/ParseCmd';
 
@@ -14,11 +15,14 @@ export class CreatePage {
         this.run(new ParseCmd(cmd));
     }
 
-    private run(cmd: ParseCmd) {
-        const res = render(resolve(__dirname, `../template/${cmd.getFeature()}.ejs`), cmd.getCmd());
-        this.write(res, cmd)
+    private async run(cmd: ParseCmd) {
+        nunjucks.configure(join(__dirname, '../template/'), { autoescape: true });
+        nunjucks.render(cmd.getFeature() + '.ejs', cmd.getCmd(), (err,res) => {
+            this.write(res, cmd)
+        })
     }
     private write(content: string, cmd: ParseCmd) {
+        console.log('content',content)
         // 文件夹
         if (cmd.getDir()) {
             let to = resolve(cmd.getCwd())
