@@ -11,12 +11,13 @@ import { ListCmd } from './ListCmd'
 import { ModalCmd } from './ModalCmd'
 export class ParseCmd {
     private cwd: string
-    private newCmd: {}
+    private newCmd: {
+        apiname: string
+    }
     private file: string
     private name: string
     private dir: boolean
     private feature: string
-
     constructor(private cmd: CMD) {
         this.cwd = resolve(process.cwd(), cmd.name)
         this.file = cmd.type;
@@ -24,17 +25,13 @@ export class ParseCmd {
         this.dir = cmd.dir;
         this.feature = cmd.feature;
 
-        let newcmd = {
-        }
         if (cmd.feature == 'Drawer') {
-            newcmd = DrawerCmd(cmd)
+            this.newCmd = DrawerCmd(cmd)
         } else if (cmd.feature == 'Modal') {
-            newcmd = ModalCmd(cmd)
+            this.newCmd = ModalCmd(cmd)
         } else {
-            newcmd = ListCmd(cmd)
+            this.newCmd = ListCmd(cmd)
         }
-
-        this.newCmd = newcmd
     }
 
     // 地址
@@ -55,5 +52,8 @@ export class ParseCmd {
     }
     public getFeature() {
         return this.feature
+    }
+    public getApiName() {
+        return this.newCmd.apiname
     }
 }

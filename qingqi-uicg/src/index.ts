@@ -5,10 +5,11 @@
  */
 // import { render, renderString, compile } from 'nunjucks';
 import nunjucks from 'nunjucks';
-import { writeFileSync, existsSync, readFileSync, mkdirSync } from 'fs';
+import { writeFileSync, existsSync, readFileSync, mkdirSync, readdir } from 'fs';
 import { resolve, join } from 'path'
 import { CMD } from './types/cmd';
 import { ParseCmd } from './class/ParseCmd';
+import chalk from 'chalk'
 
 export class CreatePage {
     constructor(private cmd: CMD) {
@@ -16,13 +17,53 @@ export class CreatePage {
     }
 
     private async run(cmd: ParseCmd) {
+
         nunjucks.configure(join(__dirname, '../template/'), { autoescape: true });
-        nunjucks.render(cmd.getFeature() + '.ejs', cmd.getCmd(), (err,res) => {
+        nunjucks.render(cmd.getFeature() + '.ejs', cmd.getCmd(), (err, res) => {
             this.write(res, cmd)
         })
+        this.createApi(cmd);
     }
+    // api
+    private createApi(cmd: ParseCmd) {
+        let toFile = resolve(`${cmd.getCwd()}.js`, '../')
+        // nunjucks.render('./api/index.js', cmd.getCmd(), (err, res) => {
+        //     writeFileSync(toFile, res, 'utf-8');
+        // })
+        this.findPath(toFile).then(res => {
+            console.log('我去', res)
+        }).catch(err => {
+            console.log(chalk.red(err));
+        })
+
+    }
+    private findPath(path: string) {
+        return new Promise((res, rej) => {
+            readdir(path, (err, files) => {
+                if (!err) {
+                    if (files.includes('api')) {
+                        // 在
+                        res(resolve(path, 'api'))
+                    } else {
+                        console.log('path', path);
+                        // 当前是否在根目录
+                        if (path == resolve(path, '../')) {
+                            rej('目录【/api】不存在，无法生成接口')
+                        } else {
+                            // 不在
+                            res(this.findPath(resolve(path, '../')))
+                        }
+
+                    }
+                } else {
+                    console.error('findpath err')
+                }
+            })
+        })
+    }
+
+    // file
     private write(content: string, cmd: ParseCmd) {
-        console.log('content',content)
         // 文件夹
         if (cmd.getDir()) {
             let to = resolve(cmd.getCwd())

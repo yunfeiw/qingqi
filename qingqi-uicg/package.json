@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@types/node": "^20.8.5",
+    "chalk": "^5.3.0",
     "ejs": "^3.1.9",
     "moment": "^2.29.4",
     "month": "^2.0.1",
