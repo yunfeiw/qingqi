@@ -31,6 +31,16 @@ export class CreatePage {
             nunjucks.render('./api/index.js', cmd.getCmd(), (err, content) => {
                 if (!err) {
                     writeFileSync(resolve(res, `${cmd.getApiName()}.js`), content, 'utf-8');
+                    // 写入语法
+                    // //##import //##export
+                    let txt = readFileSync(resolve(res, `index.js`), 'utf-8')
+                    txt = txt.replace('//##import', `//##import 
+                    import ${cmd.getApiName()} from '@/api/${cmd.getApiName()}.js'`)
+                    txt = txt.replace('//##export', `//##export
+                    ${cmd.getApiName()},`)
+
+
+                    writeFileSync(resolve(res, `index.js`), txt, 'utf-8');
                 }
             })
 

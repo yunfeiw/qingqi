@@ -19,7 +19,7 @@ export class CustomPage {
                 type: "input",
                 message: "请输入page名称",
                 name: 'name',
-                default: "index"
+                default: "list"
             },
             {
                 type: "confirm",
