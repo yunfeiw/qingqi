@@ -27,11 +27,13 @@ export class CreatePage {
     // api
     private createApi(cmd: ParseCmd) {
         let toFile = resolve(`${cmd.getCwd()}.js`, '../')
-        // nunjucks.render('./api/index.js', cmd.getCmd(), (err, res) => {
-        //     writeFileSync(toFile, res, 'utf-8');
-        // })
-        this.findPath(toFile).then(res => {
-            console.log('我去', res)
+        this.findPath(toFile).then((res: string) => {
+            nunjucks.render('./api/index.js', cmd.getCmd(), (err, content) => {
+                if (!err) {
+                    writeFileSync(resolve(res, `${cmd.getApiName()}.js`), content, 'utf-8');
+                }
+            })
+
         }).catch(err => {
             console.log(chalk.red(err));
         })
