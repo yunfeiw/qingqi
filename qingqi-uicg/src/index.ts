@@ -45,7 +45,6 @@ export class CreatePage {
                                 }
                             })
                         }).then(() => {
-                            console.log('111')
                             // write file
                             writeFileSync(resolve(res, `${cmd.getApiName()}.js`), content, 'utf-8')
 
