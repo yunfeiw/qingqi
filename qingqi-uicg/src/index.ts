@@ -35,17 +35,32 @@ export class CreatePage {
             nunjucks.render('./api/index.js', cmd.getCmd(), (err, content) => {
                 if (!err) {
                     try {
+                        // already exists
+                        new Promise((resp, rej) => {
+                            readdir(resolve(res), (err, paths) => {
+                                if (!err && paths.includes(`${cmd.getApiName()}.js`)) {
+                                    rej()
+                                } else {
+                                    resp(true)
+                                }
+                            })
+                        }).then(() => {
+                            console.log('111')
+                            // write file
+                            writeFileSync(resolve(res, `${cmd.getApiName()}.js`), content, 'utf-8')
 
-                        writeFileSync(resolve(res, `${cmd.getApiName()}.js`), content, 'utf-8')
-                        let txt = readFileSync(resolve(res, `index.js`), 'utf-8')
-                        txt = txt.replace('//##import', `import ${cmd.getApiName()} from '@/api/${cmd.getApiName()}.js'
-                        //##import
-                        `)
-                        txt = txt.replace('//##export', `${cmd.getApiName()},
-                        //##export
-                        `)
+                            let txt = readFileSync(resolve(res, `index.js`), 'utf-8')
+                            txt = txt.replace('//##import', `import ${cmd.getApiName()} from '@/api/${cmd.getApiName()}.js'
+                            //##import
+                            `)
+                            txt = txt.replace('//##export', `${cmd.getApiName()},
+                            //##export
+                            `)
 
-                        writeFileSync(resolve(res, `index.js`), txt, 'utf-8')
+                            writeFileSync(resolve(res, `index.js`), txt, 'utf-8')
+                        }).catch(err => {
+                            console.log(chalk.yellow(`${cmd.getApiName()} got it`))
+                        })
                     } catch (err) {
                         console.log(chalk.red('api【index.js】 file not found'))
                         console.log('info', err)
@@ -66,7 +81,6 @@ export class CreatePage {
                         // 在
                         res(resolve(path, 'api'))
                     } else {
-                        console.log('path', path)
                         // 当前是否在根目录
                         if (path == resolve(path, '../')) {
                             rej('目录【/api】不存在，无法生成接口')
