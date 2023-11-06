@@ -4,7 +4,7 @@
  * @Date: 2023-10-17 16:05:58
  */
 import inquirer from 'inquirer'
-import { CreatePage } from '@qingqi/uicg'
+import { CreatePage } from '@qingqi/template'
 
 export class CustomPage {
     public async create() {

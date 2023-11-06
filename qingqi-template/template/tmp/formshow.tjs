@@ -1,5 +1,6 @@
       <a class="ml-2" href="javascript:;" @click="formshow = !formshow"
-        > &lt;&lt;formshow ? "收起" : "展开" &gt;&gt;
+        > 
+        {% raw %} {{formshow ? "收起" : "展开" }} {% endraw %}
         <i
           class="ivu-icon ml-1"
           :class="
