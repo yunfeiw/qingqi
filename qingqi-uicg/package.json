@@ -20,7 +20,7 @@
   "license": "ISC",
   "qingqi": {
     "type": "cli",
-    "lib": [
+    "devLinks": [
       "@qingqi/utils"
     ]
   }

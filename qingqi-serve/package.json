@@ -1,7 +1,7 @@
 {
-  "name": "@qingqi/serve",
+  "name": "qingqi-serve",
   "version": "1.0.0",
-  "description": "页面构建服务",
+  "description": "",
   "private": true,
   "egg": {
     "declarations": true
@@ -11,7 +11,7 @@
     "egg-scripts": "^2"
   },
   "devDependencies": {
-    "egg-bin": "^5",
+    "egg-bin": "^5.14.2",
     "egg-ci": "^2",
     "egg-mock": "^5",
     "eslint": "^8",
@@ -39,9 +39,6 @@
     "type": "git",
     "url": ""
   },
-  "author": "yunfei",
-  "license": "MIT",
-  "qingqi": {
-    "type": "serve"
-  }
+  "author": "",
+  "license": "MIT"
 }
