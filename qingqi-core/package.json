@@ -22,6 +22,7 @@
   },
   "dependencies": {},
   "qingqi": {
-    "type": "cli"
+    "type": "cli",
+    "devLinks":["qingqi-uicg"]
   }
 }
