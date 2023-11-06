@@ -1,7 +1,7 @@
 {
   "name": "qingqi-serve",
   "version": "1.0.0",
-  "description": "",
+  "description": "服务端，支持界面生成与下载",
   "private": true,
   "egg": {
     "declarations": true

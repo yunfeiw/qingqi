@@ -2,7 +2,7 @@
   "name": "qingqi-ui",
   "version": "0.0.1",
   "private": true,
-  "description": "用户界面",
+  "description": "用户构建界面",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
