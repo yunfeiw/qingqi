@@ -1,14 +1,14 @@
 {
-  "name": "@qingqi/types",
+  "name": "@qingqi/meta",
   "version": "1.0.0",
-  "description": "类型依赖库",
-  "main": "/src/index.ts",
+  "description": "元数据，组件描述，初始化数据",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "yunfei.wang",
   "license": "ISC",
-  "qingqi": {
+  "qingqi":{
     "type": "lib"
   }
 }
