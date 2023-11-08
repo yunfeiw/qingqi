@@ -23,7 +23,7 @@
                 <Input
                   @on-enter="getList"
                   placeholder="请输入"
-                  v-model="formValidate.val2"
+                  v-model="formdata.val2"
                 />
               </FormItem>
             </Col>
@@ -31,7 +31,7 @@
             {% if item=='select' -%}
             <Col span="8">
               <FormItem label="下拉" prop="val1">
-                <Select v-model="formValidate.val1" filterable>
+                <Select v-model="formdata.val1" filterable>
                   <Option value="">请选择</Option>
                   <Option
                     v-for="(item, index) in XL1"
@@ -50,8 +50,8 @@
                   type="month"
                   :clearable="false"
                   style="width: 100%"
-                  :value="formValidate.val3"
-                  @on-change="formValidate.val3 = $event"
+                  :value="formdata.val3"
+                  @on-change="formdata.val3 = $event"
                 />
               </FormItem>
             </Col>
@@ -63,8 +63,8 @@
                   type="daterange"
                   style="width: 100%"
                   placeholder="请选择"
-                  :value="formValidate.val6"
-                  @on-change="formValidate.val6 = $event"
+                  :value="formdata.val6"
+                  @on-change="formdata.val6 = $event"
                 />
               </FormItem>
             </Col>
@@ -77,7 +77,7 @@
                   multiple
                   filterable
                   :max-tag-count="1"
-                  v-model="formValidate.val5"
+                  v-model="formdata.val5"
                   :max-tag-placeholder="() => '...'"
                   @on-change="(e) => selectListen(e, 'val5')"
                 >
