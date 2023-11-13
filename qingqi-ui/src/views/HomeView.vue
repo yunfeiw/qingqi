@@ -4,29 +4,41 @@
  * @Date: 2023-10-18 10:23:58
 -->
 <script setup lang="ts">
-import { ref, toRefs } from "vue";
+import { ref, toRefs, onMounted } from "vue";
 import MoveWarp from "../components/MoveWarp.vue";
 import AttrsDrawer from "../components/AttrsDrawer.vue";
-import { useCounterStore } from "@/stores/counter";
-const counter = useCounterStore();
-counter.count++;
+import { useCoordinate } from "@/stores/coordinate";
+const coordinate = useCoordinate();
+const { width, height } = coordinate.target.getBoundingClientRect
+  ? coordinate.target.getBoundingClientRect()
+  : { width: 0, height: 0 };
 
 const attrEle = ref();
-const add = () => {
-  counter.increment();
-};
 // 属性
 const attr_change = (v: {}) => {
-  console.log(attrEle);
   attrEle.value.handle();
 };
+
+onMounted(() => {
+  window.addEventListener("mousemove", (e) => {
+    if (coordinate.flag) {
+      const { left, top } = document
+        .querySelector(".edit_right")
+        .getBoundingClientRect();
+      let [x, y] = [
+        e.clientX - left <= 0 ? 0 : e.clientX - left - 10,
+        e.clientY - top <= 0 ? 0 : e.clientY - top - 35,
+      ];
+      coordinate.target.style.transform = `translateX(${x}px) translateY(${y}px)`;
+    }
+  });
+});
 </script>
 
 <template>
   <div class="edit_box">
     <!-- 左 -->
     <div class="edit_left">
-      <button @click="add">add</button>
       <el-tag class="c c1" effect="dark">input</el-tag>
       <el-tag class="c c2" effect="dark">select</el-tag>
       <el-tag class="c c3" effect="dark">button</el-tag>

@@ -1,3 +1,8 @@
+<!--
+ * @Descripttion: 
+ * @Author: yunfei
+ * @Date: 2023-11-10 17:00:19
+-->
 <script setup>
 import { ref, defineExpose } from "vue";
 const show = ref(false);
@@ -9,7 +14,13 @@ defineExpose({
 });
 </script>
 <template>
-  <el-drawer v-model="show" title="属性" size="200">
+  <el-drawer
+    :append-to-body="true"
+    v-model="show"
+    :modal="false"
+    title="属性"
+    size="500"
+  >
     <p>_(:зゝ∠)_</p>
   </el-drawer>
 </template>
