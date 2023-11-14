@@ -4,11 +4,13 @@
  * @Date: 2023-01-31 11:41:47
  */
 
-import { drapElementType } from '@yuchang/types'
 
 export const select = {
+    type: 'select',
 
-    "drag-type": drapElementType.block,
+    x: 0,
+    
+    y: 0,
 
     props: {
 

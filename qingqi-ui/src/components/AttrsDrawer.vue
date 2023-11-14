@@ -5,9 +5,12 @@
 -->
 <script setup>
 import { ref, defineExpose } from "vue";
+
+const data = ref();
 const show = ref(false);
-const handle = () => {
+const handle = (v) => {
   show.value = true;
+  data.value = v;
 };
 defineExpose({
   handle,
@@ -21,6 +24,15 @@ defineExpose({
     title="属性"
     size="500"
   >
-    <p>_(:зゝ∠)_</p>
+    <el-form-item label="text">
+      <el-input v-model="data.text" />
+    </el-form-item>
+    <el-form-item label="v-model">
+      <el-input v-model="data['v-model']" />
+    </el-form-item>
+
+    <el-form-item label="label">
+      <el-input v-model="data.label" />
+    </el-form-item>
   </el-drawer>
 </template>

@@ -4,31 +4,63 @@
  * @Date: 2023-10-18 10:23:58
 -->
 <script setup lang="ts">
+import { button, input, select, inputForm } from "@qingqi/meta";
 import { ref, toRefs, onMounted } from "vue";
 import MoveWarp from "../components/MoveWarp.vue";
 import AttrsDrawer from "../components/AttrsDrawer.vue";
+import { Render } from "@/components/Render.tsx";
+// store
 import { useCoordinate } from "@/stores/coordinate";
+import { useItems } from "@/stores/items";
+
 const coordinate = useCoordinate();
-const { width, height } = coordinate.target.getBoundingClientRect
-  ? coordinate.target.getBoundingClientRect()
-  : { width: 0, height: 0 };
-
+const items = useItems();
 const attrEle = ref();
-// 属性
-const attr_change = (v: {}) => {
-  attrEle.value.handle();
-};
 
+// 修改属性
+const attr_change = (v: {}) => {
+  console.log("属性", v);
+  attrEle.value.handle(v);
+};
+// 选择
+const eleHandle = (v: string) => {
+  switch (v) {
+    case "button":
+      items.setItem({ _id: "_" + new Date().getTime(), ...button });
+      break;
+    case "input":
+      items.setItem({ _id: "_" + new Date().getTime(), ...input });
+      break;
+    case "select":
+      items.setItem({ _id: "_" + new Date().getTime(), ...select });
+      break;
+    case "inputForm":
+      items.setItem({ _id: "_" + new Date().getTime(), ...inputForm });
+      break;
+    default:
+      break;
+  }
+};
+// 输出
+const consoleHandle = () => {
+  console.log("items.value", items.list);
+};
 onMounted(() => {
+  // 拖拽事件
   window.addEventListener("mousemove", (e) => {
     if (coordinate.flag) {
       const { left, top } = document
         .querySelector(".edit_right")
         .getBoundingClientRect();
+
+      const { height } = coordinate.target.getBoundingClientRect();
+
       let [x, y] = [
-        e.clientX - left <= 0 ? 0 : e.clientX - left - 10,
-        e.clientY - top <= 0 ? 0 : e.clientY - top - 35,
+        e.clientX - left <= 0 ? 0 : e.clientX - left - 15,
+        e.clientY - top <= 0 ? 0 : e.clientY - top - height - 5,
       ];
+      items.list[coordinate._id].x = x;
+      items.list[coordinate._id].y = y;
       coordinate.target.style.transform = `translateX(${x}px) translateY(${y}px)`;
     }
   });
@@ -39,15 +71,20 @@ onMounted(() => {
   <div class="edit_box">
     <!-- 左 -->
     <div class="edit_left">
-      <el-tag class="c c1" effect="dark">input</el-tag>
-      <el-tag class="c c2" effect="dark">select</el-tag>
-      <el-tag class="c c3" effect="dark">button</el-tag>
-      <el-tag class="c c4" effect="dark">radio</el-tag>
+      <el-tag @click="eleHandle('button')" effect="dark">button</el-tag>
+      <el-tag @click="eleHandle('input')" effect="dark">input</el-tag>
+      <el-tag @click="eleHandle('select')" effect="dark">select</el-tag>
+      <el-tag @click="eleHandle('inputForm')" effect="dark">inputForm</el-tag>
+      <el-tag @click="consoleHandle" effect="dark">console</el-tag>
     </div>
     <!-- 右 -->
     <div class="edit_right">
-      <move-warp @attr_change="attr_change">
-        <el-button type="primary">Primary</el-button>
+      <move-warp
+        v-for="item in items.list"
+        :_id="item._id"
+        @attr_change="attr_change(item)"
+      >
+        <Render :prop="item" />
       </move-warp>
     </div>
     <!-- 属性 -->

@@ -7,7 +7,7 @@ import { defineStore } from 'pinia'
 
 export const useCoordinate = defineStore('coordinate', {
     state: () => {
-        return { target: {} as HTMLDivElement, flag: false, offX: 0, offY: 0 }
+        return { target: {} as HTMLDivElement, flag: false, offX: 0, offY: 0, '_id': '' }
     },
     actions: {
         setXY(offsetX: number, offsetY: number) {
@@ -17,8 +17,9 @@ export const useCoordinate = defineStore('coordinate', {
         setFlag(state: boolean) {
             this.flag = state;
         },
-        setTarget(e: HTMLDivElement) {
+        setTarget(e: HTMLDivElement, id: string) {
             this.target = e;
+            this['_id'] = id
         }
     }
 })

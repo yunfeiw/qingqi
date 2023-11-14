@@ -4,8 +4,10 @@
  * @Date: 2023-01-31 11:41:47
  */
 
-export const input = {
-    type: 'input',
+export const inputForm = {
+    type: 'InputForm',
+
+    label: '文本',
 
     x: 0,
 

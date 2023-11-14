@@ -3,13 +3,16 @@
  * @Author: yunfei
  * @Date: 2023-01-31 11:25:19
  */
-import { drapElementType } from '@yuchang/types'
 
 export const button = {
 
-    "drag-type": drapElementType.block,
+    type: 'button',
 
     text: "按钮",
+
+    x: 0,
+
+    y: 0,
 
     props: {
 
