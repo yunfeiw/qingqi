@@ -5,7 +5,8 @@
 -->
 <script setup lang="ts">
 let props = defineProps<{
-  _id: string;
+  // _id: string;
+  item: any;
 }>();
 
 import { useCoordinate } from "@/stores/coordinate";
@@ -18,7 +19,7 @@ const warpEle = ref();
 const mousedown = () => {
   coordinate.setFlag(true);
   // 存储当前node
-  coordinate.setTarget(warpEle.value, props._id);
+  coordinate.setTarget(warpEle.value, props.item._id);
 };
 // 松开
 const mouseup = () => {
@@ -26,11 +27,15 @@ const mouseup = () => {
 };
 // 删除
 const removeHandle = () => {
-  items.rm(props._id);
+  items.rm(props.item._id);
 };
 </script>
 <template>
-  <div class="move_warp_com" ref="warpEle">
+  <div
+    class="move_warp_com"
+    :style="`translateX(${props.item.x}px) translateY(${props.item.y}px)`"
+    ref="warpEle"
+  >
     <div class="util_box">
       <el-icon
         @mousedown="mousedown"

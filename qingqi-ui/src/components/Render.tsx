@@ -8,7 +8,16 @@ type COMPONENT = {
         type: string,
         text?: string,
         label?: string,
-        props?: {}
+        props?: {
+            column?: []
+        },
+
+        options?: [
+            {
+                label: string,
+                value: string
+            }
+        ]
     }
 }
 // import type { PropType } from 'vue';
@@ -50,7 +59,28 @@ export const Render = (obj: COMPONENT) => {
                     <el-input {...obj.prop.props} />
                 </el-form-item>
             ))();
+        case 'SelectForm':
+            return (() => (
+                <el-form-item label={obj.prop.label}>
+                    <el-select {...obj.prop.props} >
+                        {
+                            obj.prop.options!.map(e => {
+                                <el-option label={e.label} value={e.value} />
+                            })
+                        }
+                    </el-select>
+                </el-form-item>
+            ))();
+        case "table":
+            return (() => (
 
+                <el-table {...obj.prop.props} >
+                    {obj.prop.props!.column!.map((e: {}) => (
+                        <el-table-column {...e} />
+                    ))}
+                </el-table>
+
+            ))()
 
     }
 }

@@ -11,7 +11,9 @@ export const useItems = defineStore('items', {
             this.list = { ...this.list, [item._id]: item }
         },
         rm(key: string) {
-            this.list = delete { ...this.list }[key]
+            let list: any = { ...this.list }
+            delete list[key]
+            this.list = list
         }
     }
 })

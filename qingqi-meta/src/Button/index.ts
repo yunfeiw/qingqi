@@ -18,12 +18,13 @@ export const button = {
 
         type: "primary",
 
+        plain: false,
+
         ghost: false,
 
         size: 'default',
 
-        long: false
+        function: ""
 
-        // clearable: false
     }
 }

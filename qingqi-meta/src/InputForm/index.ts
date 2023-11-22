@@ -4,7 +4,7 @@
  * @Date: 2023-01-31 11:41:47
  */
 
-export const inputForm = {
+export const InputForm = {
     type: 'InputForm',
 
     label: '文本',
@@ -15,13 +15,11 @@ export const inputForm = {
 
     props: {
 
-        type: "text",
-
         'v-model': '',
 
         size: 'default',
 
-        placeholder: '请输入',
+        placeholder: '请选择',
 
 
     }

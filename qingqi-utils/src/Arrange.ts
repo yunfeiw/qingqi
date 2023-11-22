@@ -1,18 +1,28 @@
 /*
- * @Descripttion: 元素序列，感觉差点意思
+ * @Descripttion: 
  * @Author: yunfei
  * @Date: 2023-11-14 18:29:56
  */
+let objs: any = {
+    '_5': { id: 5, x: 80, y: 95 },
+    "_1": { id: 1, x: 30, y: 45 },
+    '_3': { id: 3, x: 160, y: 40 },
 
-const THRESHOLD: number = 8;
+    '_4': { id: 4, x: 30, y: 100 },
+    '_2': { id: 2, x: 80, y: 50 },
 
-export const Arrange = (objs: any) => {
+    '_6': { id: 6, x: 160, y: 110 },
+}
+let threshold: number = 8;
+
+export const Arrange = () => {
     let res = []
     for (let key in objs) {
         res.push(objs[key])
     }
 
-    // 分组（依据 Y）
+
+    // 计算出几行 
     let obj: any = {}
     res.forEach(e => {
         // 判断是否存在值
@@ -22,7 +32,7 @@ export const Arrange = (objs: any) => {
             // 比较
             nums.forEach((n: any) => {
                 n = Number(n)
-                if ((n - THRESHOLD) < e.y && e.y < (n + THRESHOLD)) {
+                if ((n - threshold) < e.y && e.y < (n + threshold)) {
                     obj[n].push(e);
                     flag = false;
                 }
@@ -35,6 +45,7 @@ export const Arrange = (objs: any) => {
         }
     })
 
+    console.log(obj)
     // 组排序
     let rows = Object.keys(obj)
     let rowSort = rows.sort((a: any, b: any) => a - b)
@@ -45,10 +56,13 @@ export const Arrange = (objs: any) => {
     })
 
     // 组合
-    let compons: any = []
+    let compons = []
     rowSort.forEach(key => {
         compons.push(...obj[key])
     })
 
-    return compons
+    console.log('结果', compons)
+    return compons;
 }
+
+Arrange()
