@@ -19,10 +19,12 @@ const warpEle = ref();
 const mousedown = () => {
   coordinate.setFlag(true);
   // 存储当前node
+  warpEle.value.style.zIndex = "9999";
   coordinate.setTarget(warpEle.value, props.item._id);
 };
 // 松开
 const mouseup = () => {
+  warpEle.value.style.zIndex = "1";
   coordinate.setFlag(false);
 };
 // 删除

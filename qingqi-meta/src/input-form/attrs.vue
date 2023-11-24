@@ -1,9 +1,9 @@
-<script setup lang="ts">
-/*
- * @Descripttion: input-form 属性设置
+<!--
+ * @Descripttion: input-form
  * @Author: yunfei
- * @Date: 2023-01-31 10:35:24
- */
+ * @Date: 2023-11-21 20:17:11
+-->
+<script setup lang="ts">
 defineProps(["data"]);
 </script>
 <template>

@@ -53,6 +53,11 @@ export const Render = (obj: COMPONENT) => {
                     <el-option label="3" value="3" />
                 </el-select>
             ))()
+
+        case 'datepicker':
+            return (() => (<el-date-picker  {...obj.prop.props} />))()
+
+
         case 'InputForm':
             return (() => (
                 <el-form-item label={obj.prop.label}>
@@ -69,6 +74,12 @@ export const Render = (obj: COMPONENT) => {
                             })
                         }
                     </el-select>
+                </el-form-item>
+            ))();
+        case 'DatePickerForm':
+            return (() => (
+                <el-form-item label={obj.prop.label}>
+                    <el-date-picker  {...obj.prop.props} />
                 </el-form-item>
             ))();
         case "table":

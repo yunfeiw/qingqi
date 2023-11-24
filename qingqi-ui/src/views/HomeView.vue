@@ -13,8 +13,10 @@ import {
   button,
   input,
   select,
+  datepicker,
   InputForm,
   SelectForm,
+  DatePickerForm,
   table,
 } from "@qingqi/meta";
 import { clone } from "ramda";
@@ -47,6 +49,9 @@ const eleHandle = (v: string) => {
     case "select":
       items.setItem({ _id: "_" + new Date().getTime(), ...clone(select) });
       break;
+    case "datepicker":
+      items.setItem({ _id: "_" + new Date().getTime(), ...clone(datepicker) });
+      break;
     case "InputForm":
       items.setItem({ _id: "_" + new Date().getTime(), ...clone(InputForm) });
       break;
@@ -54,6 +59,12 @@ const eleHandle = (v: string) => {
       items.setItem({
         _id: "_" + new Date().getTime(),
         ...clone(SelectForm),
+      });
+      break;
+    case "DatePickerForm":
+      items.setItem({
+        _id: "_" + new Date().getTime(),
+        ...clone(DatePickerForm),
       });
       break;
     case "table":
@@ -99,13 +110,17 @@ onMounted(() => {
       <el-tag @click="eleHandle('button')" effect="dark">button</el-tag>
       <el-tag @click="eleHandle('input')" effect="dark">input</el-tag>
       <el-tag @click="eleHandle('select')" effect="dark">select</el-tag>
+      <el-tag @click="eleHandle('datepicker')" effect="dark">datepicker</el-tag>
 
       <el-divider content-position="left">表单元素</el-divider>
       <el-tag @click="eleHandle('InputForm')" type="success" effect="dark"
-        >inputForm</el-tag
+        >input</el-tag
       >
       <el-tag @click="eleHandle('SelectForm')" type="success" effect="dark"
-        >SelectForm</el-tag
+        >select</el-tag
+      >
+      <el-tag @click="eleHandle('DatePickerForm')" type="success" effect="dark"
+        >datepicker</el-tag
       >
 
       <el-divider content-position="left">表格元素</el-divider>
