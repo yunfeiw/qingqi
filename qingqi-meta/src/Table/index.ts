@@ -15,6 +15,8 @@ export const table = {
 
     props: {
         border: true,
+        xh: '',
+        action: false,
         size: "default",
         style: {
             width: '1000px'
@@ -22,28 +24,24 @@ export const table = {
         data: [{
             date: '2016-05-03',
             name: 'Tom',
-            bb: "飞机",
-            address: 'No. 189, Grove St, Los Angeles',
+            age: "18",
         },
         {
             date: '2016-05-02',
             name: 'Tom',
-            bb: "坦克",
-            address: 'No. 189, Grove St, Los Angeles',
+            age: "19",
         },
         {
             date: '2016-05-04',
             name: 'Tom',
-            bb: "大炮",
-            address: 'No. 189, Grove St, Los Angeles',
+            age: "20",
         }],
-
         column: [
             {
                 fixed: 'left',
                 prop: "date",
-                label: "Date",
-                width: '200',
+                label: "date",
+                width: '180',
             },
             {
                 prop: "name",
@@ -51,22 +49,18 @@ export const table = {
                 width: '200'
             },
             {
-                prop: "name",
-                label: "aa",
-                width: '300'
-            },
-            {
-                prop: "bb",
-                label: "bb",
-                width: '300'
-            },
-            {
                 fixed: 'right',
-                prop: "address",
-                label: "address",
-                width: '300'
-
+                prop: "age",
+                label: "age",
+                width: '180'
             }
         ]
+    },
+    btns: [],
+    btnprops: {
+        fixed: 'right',
+        label: "操作",
+        width: '180'
+
     }
 }

@@ -17,7 +17,9 @@ type COMPONENT = {
                 label: string,
                 value: string
             }
-        ]
+        ],
+        btns?: [{ text: string }],
+        btnprops?: []
     }
 }
 // import type { PropType } from 'vue';
@@ -54,9 +56,19 @@ export const Render = (obj: COMPONENT) => {
                 </el-select>
             ))()
 
+        case 'Switch':
+            return (() => (
+                <el-switch  {...obj.prop.props} />
+            ))()
+
         case 'datepicker':
             return (() => (<el-date-picker  {...obj.prop.props} />))()
 
+        case 'download':
+            return (() => (<el-button > {obj.prop.text}</el-button >))();
+
+        case 'upload':
+            return (() => (<el-button  > {obj.prop.text}</el-button >))();
 
         case 'InputForm':
             return (() => (
@@ -82,16 +94,59 @@ export const Render = (obj: COMPONENT) => {
                     <el-date-picker  {...obj.prop.props} />
                 </el-form-item>
             ))();
-        case "table":
+
+
+
+        case 'SwitchForm':
             return (() => (
-
-                <el-table {...obj.prop.props} >
-                    {obj.prop.props!.column!.map((e: {}) => (
-                        <el-table-column {...e} />
-                    ))}
-                </el-table>
-
+                <el-form-item label={obj.prop.label}>
+                    <el-switch  {...obj.prop.props} />
+                </el-form-item>
             ))()
+
+
+        case "table":
+
+
+            // 特殊处理 action
+
+            if (obj.prop.btns!.length > 0) {
+                let column = [...obj.prop.props!.column!, {
+                    label: '操作',
+                    prop: 'id',
+                    width: '200'
+                }];
+                return (() => (
+                    <el-table {...obj.prop.props} >
+                        {column.map((e: { label: string }) => {
+
+                            if (e.label !== '操作') {
+                                return <el-table-column {...e} />
+                            } else {
+                                return (
+                                    <el-table-column {...obj.prop.btnprops}>
+                                        <div v-slot='default'>
+                                            {
+                                                obj.prop.btns!.map(el => (<el-button link type="primary" size="small" >{el.text}</el-button >))
+                                            }
+                                        </div>
+                                    </el-table-column>
+                                )
+                            }
+
+
+                        })}
+                    </el-table>
+
+                ))()
+            } else {
+                return (() => (
+                    <el-table {...obj.prop.props} >
+                        {obj.prop.props!.column!.map((e: { label: string }) => <el-table-column {...e} />)}
+                    </el-table>
+
+                ))()
+            }
 
     }
 }

@@ -13,6 +13,9 @@ import {
   TableAttr,
   DatePickerAttr,
   DatePickerFormAttr,
+  SwitchFormAttr,
+  UploadAttr,
+  DownloadAttr,
 } from "@qingqi/meta";
 // 数据
 const data = ref();
@@ -28,15 +31,16 @@ defineExpose({
 <template>
   <el-drawer title="属性" v-model="show" :append-to-body="true" :size="600">
     <input-form-attr :data="data" v-if="data.type == 'InputForm'" />
-    <select-form-attr :data="data" v-else-if="data.type == 'SelectForm'" />
-    <button-attr :data="data" v-else-if="data.type == 'button'" />
-    <table-attr :data="data" v-else-if="data.type == 'table'" />
-    <date-picker-attr :data="data" v-else-if="data.type == 'datepicker'" />
-    <date-picker-form-attr
-      :data="data"
-      v-else-if="data.type == 'DatePickerForm'"
-    />
-    <template v-else>
+    <select-form-attr :data="data" v-if="data.type == 'SelectForm'" />
+    <button-attr :data="data" v-if="data.type == 'button'" />
+    <table-attr :data="data" v-if="data.type == 'table'" />
+    <date-picker-attr :data="data" v-if="data.type == 'datepicker'" />
+    <date-picker-form-attr :data="data" v-if="data.type == 'DatePickerForm'" />
+    <switch-form-attr :data="data" v-if="data.type == 'SwitchForm'" />
+    <download-attr :data="data" v-if="data.type == 'download'" />
+    <upload-attr :data="data" v-if="data.type == 'upload'" />
+
+    <!-- <template v-else>
       <el-form-item label="text">
         <el-input v-model="data.text" />
       </el-form-item>
@@ -47,6 +51,6 @@ defineExpose({
       <el-form-item label="label">
         <el-input v-model="data.label" />
       </el-form-item>
-    </template>
+    </template> -->
   </el-drawer>
 </template>

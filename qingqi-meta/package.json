@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "vite": "^4.4.9",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "element-plus": "^2.4.2"
   },
   "author": "yunfei.wang",
   "license": "ISC",

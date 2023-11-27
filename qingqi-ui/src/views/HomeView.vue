@@ -18,6 +18,10 @@ import {
   SelectForm,
   DatePickerForm,
   table,
+  Switch,
+  SwitchForm,
+  download,
+  upload,
 } from "@qingqi/meta";
 import { clone } from "ramda";
 import { ref, toRefs, onMounted } from "vue";
@@ -46,12 +50,23 @@ const eleHandle = (v: string) => {
     case "input":
       items.setItem({ _id: "_" + new Date().getTime(), ...clone(input) });
       break;
+    case "Switch":
+      items.setItem({ _id: "_" + new Date().getTime(), ...clone(Switch) });
+      break;
     case "select":
       items.setItem({ _id: "_" + new Date().getTime(), ...clone(select) });
       break;
     case "datepicker":
       items.setItem({ _id: "_" + new Date().getTime(), ...clone(datepicker) });
       break;
+    case "upload":
+      items.setItem({ _id: "_" + new Date().getTime(), ...clone(upload) });
+      break;
+    case "download":
+      items.setItem({ _id: "_" + new Date().getTime(), ...clone(download) });
+      break;
+
+      
     case "InputForm":
       items.setItem({ _id: "_" + new Date().getTime(), ...clone(InputForm) });
       break;
@@ -61,6 +76,14 @@ const eleHandle = (v: string) => {
         ...clone(SelectForm),
       });
       break;
+
+    case "SwitchForm":
+      items.setItem({
+        _id: "_" + new Date().getTime(),
+        ...clone(SwitchForm),
+      });
+      break;
+
     case "DatePickerForm":
       items.setItem({
         _id: "_" + new Date().getTime(),
@@ -111,6 +134,9 @@ onMounted(() => {
       <el-tag @click="eleHandle('input')" effect="dark">input</el-tag>
       <el-tag @click="eleHandle('select')" effect="dark">select</el-tag>
       <el-tag @click="eleHandle('datepicker')" effect="dark">datepicker</el-tag>
+      <el-tag @click="eleHandle('Switch')" effect="dark">switch</el-tag>
+      <el-tag @click="eleHandle('download')" effect="dark">download</el-tag>
+      <el-tag @click="eleHandle('upload')" effect="dark">upload</el-tag>
 
       <el-divider content-position="left">表单元素</el-divider>
       <el-tag @click="eleHandle('InputForm')" type="success" effect="dark"
@@ -122,10 +148,19 @@ onMounted(() => {
       <el-tag @click="eleHandle('DatePickerForm')" type="success" effect="dark"
         >datepicker</el-tag
       >
+      <el-tag @click="eleHandle('SwitchForm')" type="success" effect="dark"
+        >switch</el-tag
+      >
 
       <el-divider content-position="left">表格元素</el-divider>
       <el-tag @click="eleHandle('table')" type="warning" effect="dark"
         >table</el-tag
+      >
+      <el-tag @click="eleHandle('drawer')" type="warning" effect="dark"
+        >drawer</el-tag
+      >
+      <el-tag @click="eleHandle('modal')" type="warning" effect="dark"
+        >modal</el-tag
       >
 
       <el-divider />

@@ -12,7 +12,10 @@ export { SelectForm } from './select-form'
 export { table } from './table'
 export { datepicker } from './date-picker'
 export { DatePickerForm } from './date-picker-form'
-
+export { Switch } from './switch'
+export { SwitchForm } from './switch-form'
+export { download } from './download'
+export { upload } from './upload'
 
 // 属性
 import ButtonAttr from './button/attrs.vue'
@@ -21,6 +24,9 @@ import SelectFormAttr from './select-form/attrs.vue'
 import TableAttr from './table/attrs.vue'
 import DatePickerAttr from './date-picker/attrs.vue'
 import DatePickerFormAttr from './date-picker-form/attrs.vue'
+import SwitchFormAttr from './switch-form/attrs.vue'
+import UploadAttr from './upload/attrs.vue'
+import DownloadAttr from './download/attrs.vue'
 
 
-export { InputFormAttr, SelectFormAttr, ButtonAttr, TableAttr, DatePickerAttr, DatePickerFormAttr }
+export { InputFormAttr, SelectFormAttr, ButtonAttr, TableAttr, DatePickerAttr, DatePickerFormAttr, SwitchFormAttr, UploadAttr, DownloadAttr }
