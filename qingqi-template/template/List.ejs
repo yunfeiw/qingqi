@@ -15,6 +15,8 @@
         :label-width="90"
         onsubmit="return false;"
       >
+      <Row>
+
       {% for item in forms  %}
           {% if item=='input' -%}
           <Col span="6">
@@ -92,13 +94,8 @@
           </Col>
           {%- endif %}
       {% endfor %}
+
       
-      {% if formshow -%}
-      <template v-show="formshow">
-      
-      </template>
-      {%- endif %}
-  
       <Col span="6">
         <FormItem label="" class="text-right" :label-width="0">
           <a href="javascript:;" class="btn searchBtn" @click="getList()">
@@ -117,7 +114,15 @@
           {%- endif %}
         </FormItem>
   
-        </Col>
+      </Col>
+    </Row>
+      
+      {% if formshow -%}
+      <Row v-show="formshow">
+      
+      </Row>
+      {%- endif %}
+  
       </Form>
       {%- endif %} 
   
